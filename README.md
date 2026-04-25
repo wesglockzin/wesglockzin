@@ -33,7 +33,7 @@ support (Okta, ADFS, Azure AD), Azure Container Apps deployment.
 The tool I reach for when an SSO flow is misbehaving and I need ground
 truth.
 
-**[splunk-dashboard-automation](https://github.com/wesglockzin/splunk-dashboard-automation)**
+**[splunk](https://github.com/wesglockzin/splunk)**
 Splunk dashboard library for identity platform security monitoring.
 Production dashboards covering ADFS, Duo, Okta activity, policy
 monitoring, and detection engineering. Includes export/import,
