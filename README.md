@@ -11,7 +11,7 @@ isn't an option.
 
 ### How I work
 
-Elegance, harmony, and adherence to standards and best practices— applied to identity systems that
+Elegance, harmony, and adherence to community standards and best practices— applied to identity systems that
 have spent decades accumulating workarounds. The goal isn't to add
 another clever layer. It's to find the cleaner shape that was always
 there.
