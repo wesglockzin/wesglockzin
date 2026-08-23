@@ -17,6 +17,10 @@ identity systems that have spent decades accumulating workarounds. The
 goal isn't to add another clever layer. It's to find the cleaner shape
 that was always there.
 
+My daily development runs through Claude Code — hooks, persistent memory,
+MCP servers, multi-model adversarial review, gated deploy pipelines — and
+the patterns worth keeping get codified into methodology.
+
 Every README here ends with a **Known limitations** section. I'd rather
 tell you where my tools are weak than have you find out.
 
