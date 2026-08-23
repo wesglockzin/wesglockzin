@@ -2,73 +2,76 @@
 
 Federal identity engineer. On-prem AI. Python.
 
-I build tools that automate ugly identity and security problems —
-SSO migrations at federation scale, SAML/OIDC debugging, security
-monitoring, and local LLM tooling for environments where cloud AI
-isn't an option.
+I run identity infrastructure at federation scale — ADFS, Okta, Duo,
+Entra ID — and I build the tools that keep large migrations survivable.
+Right now that means moving roughly 400 applications from ADFS to Okta
+and replacing an enterprise MFA platform mid-flight, without breaking
+anyone's Monday morning.
 
 ---
 
 ### How I work
 
-Elegance, harmony, and adherence to community standards and best practices— applied to identity systems that
-have spent decades accumulating workarounds. The goal isn't to add
-another clever layer. It's to find the cleaner shape that was always
-there.
+Elegance, harmony, and adherence to community standards — applied to
+identity systems that have spent decades accumulating workarounds. The
+goal isn't to add another clever layer. It's to find the cleaner shape
+that was always there.
+
+Every README here ends with a **Known limitations** section. I'd rather
+tell you where my tools are weak than have you find out.
 
 ---
 
-### Flagship projects
+### The tools
 
 **[adfs-to-okta-migration](https://github.com/wesglockzin/adfs-to-okta-migration)**
-Migrate ADFS Relying Party Trusts to Okta SAML 2.0 apps via API. Dry-run
-support, conflict detection, idempotent re-runs, FIPS-compliant token
-handling, multi-ACS endpoint support. Reduces manual ADFS-to-Okta
-migration from hours-per-app to a repeatable workflow with audit logs.
+Parses ADFS Relying Party Trust exports and creates matching Okta
+SAML 2.0 apps through the API — export → scan → import, with idempotent
+re-runs and per-run logging. The workhorse of the migration.
 
 **[federated-claims-analyzer](https://github.com/wesglockzin/federated-claims-analyzer)**
-Full-stack OIDC and SAML 2.0 identity testing platform. JWT decoding,
-JWKS validation, SAML assertion parsing, PKCE flows, multi-provider
-support (Okta, ADFS, Azure AD), Azure Container Apps deployment.
-The tool I reach for when an SSO flow is misbehaving and I need ground
-truth.
+Interactive SSO tester. Runs a real OIDC or SAML sign-in against Okta or
+ADFS and shows every claim, token, and assertion that came back — JWKS
+validation, PKCE, signed SAML, the works. My ground-truth tool when a
+federation flow misbehaves.
 
-**[splunk](https://github.com/wesglockzin/splunk)**
-Splunk dashboard library for identity platform security monitoring.
-Production dashboards covering ADFS, Duo, Okta activity, policy
-monitoring, and detection engineering. Includes export/import,
-drift detection, and version control workflows for dashboards.
+**[saml-metadata-parser](https://github.com/wesglockzin/saml-metadata-parser)**
+Reads SAML metadata so I don't have to — endpoints, bindings, and every
+X.509 certificate decoded with fingerprints and validity dates.
+
+**[identity-llm-client](https://github.com/wesglockzin/identity-llm-client)**
+Small, dependency-free client for local LLM inference via Ollama.
+Exists because of the next section.
 
 ---
 
-### Other identity work
+### Why the AI here runs locally
 
-- [saml-metadata-parser](https://github.com/wesglockzin/saml-metadata-parser)
-  — parse and debug SAML 2.0 metadata
-- [okta-admin](https://github.com/wesglockzin/okta-admin)
-  — Okta SAML/OIDC app inventory web UI
-- [identity-llm-client](https://github.com/wesglockzin/identity-llm-client)
-  — local LLM client (Ollama + Qwen 2.5 72B) for on-prem identity tools
-- [personal-coworker-assistant](https://github.com/wesglockzin/personal-coworker-assistant)
-  — local AI email and calendar triage with on-prem Exchange
+Identity data — SAML assertions, auth logs, federation configs — can't
+go to cloud AI APIs. That constraint isn't negotiable, so the interesting
+engineering is making AI useful *inside* the perimeter: Ollama serving
+local models, one shared client so every tool calls inference the same
+way, and an analysis layer in the migration tool that never sends a byte
+off-host. Next up for publication: a local retrieval pipeline with a
+measured eval harness.
 
 ---
 
 ### About these repos
 
-Most of the work here is sanitized snapshots of internal tooling.
-Commit histories reflect publication moments, not original development —
-each repo is curated for public use rather than mirroring how the
-internal version evolved. Internal identifiers are replaced with
-placeholders (`your-username`, `your-org`, etc.) that you substitute
-for your own environment.
+Sanitized snapshots of internal tooling, published through an automated
+review-and-sanitize pipeline. Commit histories reflect publication
+moments, not original development. The pipeline enforces its own gates:
+every staged file must compile, every certificate must decode to a
+dummy, and a deny-list of identifiers must come back empty — because a
+scrub you don't verify is a leak you haven't found yet.
 
 ---
 
 ### Stack
 
-Python · Flask · Azure Container Apps · Okta · ADFS · Splunk · Duo ·
-SAML 2.0 · OIDC · Ollama · on-prem LLMs
+Python · Flask · Azure Container Apps · OpenShift · Okta · ADFS · Duo ·
+SAML 2.0 · OIDC · Splunk · Ollama · on-prem LLMs
 
 ---
 
