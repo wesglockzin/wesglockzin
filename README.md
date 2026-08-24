@@ -50,6 +50,11 @@ regression-gated eval harness. The eval story is the point: pre-committed
 bars, adversarial query sets, and per-run manifests that tell a retrieval
 regression from corpus drift.
 
+**[local-rag-mcp](https://github.com/wesglockzin/local-rag-mcp)**
+A read-only MCP server over the same local retrieval substrate — semantic
+search served to any MCP client, symlink-hardened file access, embed-then-swap
+ingest, nothing leaving the host. One substrate, two consumers.
+
 **[identity-llm-client](https://github.com/wesglockzin/identity-llm-client)**
 Small, dependency-free client for local LLM inference via Ollama.
 Exists because of the next section.
