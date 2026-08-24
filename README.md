@@ -43,6 +43,13 @@ federation flow misbehaves.
 Reads SAML metadata so I don't have to — endpoints, bindings, and every
 X.509 certificate decoded with fingerprints and validity dates.
 
+**[claude-code-session-memory](https://github.com/wesglockzin/claude-code-session-memory)**
+Local RAG session memory for Claude Code — a `UserPromptSubmit` hook that
+retrieves memory files by meaning, on-device, with a measured and
+regression-gated eval harness. The eval story is the point: pre-committed
+bars, adversarial query sets, and per-run manifests that tell a retrieval
+regression from corpus drift.
+
 **[identity-llm-client](https://github.com/wesglockzin/identity-llm-client)**
 Small, dependency-free client for local LLM inference via Ollama.
 Exists because of the next section.
@@ -55,9 +62,10 @@ Identity data — SAML assertions, auth logs, federation configs — can't
 go to cloud AI APIs. That constraint isn't negotiable, so the interesting
 engineering is making AI useful *inside* the perimeter: Ollama serving
 local models, one shared client so every tool calls inference the same
-way, and an analysis layer in the migration tool that never sends a byte
-off-host. Next up for publication: a local retrieval pipeline with a
-measured eval harness.
+way, an analysis layer in the migration tool that never sends a byte
+off-host — and a retrieval pipeline with a measured eval harness, now
+published as
+[claude-code-session-memory](https://github.com/wesglockzin/claude-code-session-memory).
 
 ---
 
