@@ -1,6 +1,6 @@
 ## Hi, I'm Wes
 
-Federal identity engineer. On-prem AI. Python.
+Federal Identity Architect leveraging on-prem and Cloud AI to build tools and solutions.
 
 I run identity infrastructure at federation scale — ADFS, Okta, Duo,
 Entra ID — and I build the tools that keep large migrations survivable.
