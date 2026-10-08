@@ -17,9 +17,11 @@ identity systems that have spent decades accumulating workarounds. The
 goal isn't to add another clever layer. It's to find the cleaner shape
 that was always there.
 
-My daily development runs through Claude Code — hooks, persistent memory,
-MCP servers, multi-model adversarial review, gated deploy pipelines — and
-the patterns worth keeping get codified into methodology.
+My daily development runs through Claude Code and OpenAI Codex. Claude Code
+drives — hooks, persistent memory, MCP servers, gated deploy pipelines — and
+Codex is the independent second reviewer before anything ships. On-prem
+models via Ollama handle the work that should stay local. The patterns worth
+keeping get codified into methodology.
 
 Every README here ends with a **Known limitations** section. I'd rather
 tell you where my tools are weak than have you find out.
@@ -77,15 +79,14 @@ Exists because of the next section.
 
 ---
 
-### Why the AI here runs locally
+### Where the AI runs
 
-Identity data — SAML assertions, auth logs, federation configs — can't
-go to cloud AI APIs. That constraint isn't negotiable, so the interesting
-engineering is making AI useful *inside* the perimeter: Ollama serving
-local models, one shared client so every tool calls inference the same
-way, an analysis layer in the migration tool that never sends a byte
-off-host — and a retrieval pipeline with a measured eval harness, now
-published as
+Cloud agents (Claude Code, Codex) for building and reviewing; local models
+(Ollama) for the analysis I want to keep on the host. The interesting
+engineering is making both trustworthy: one shared client so every tool
+calls local inference the same way, an analysis layer in the migration tool
+that never sends a byte off-host, and a retrieval pipeline with a measured
+eval harness, now published as
 [claude-code-session-memory](https://github.com/wesglockzin/claude-code-session-memory).
 
 ---
@@ -104,7 +105,7 @@ scrub you don't verify is a leak you haven't found yet.
 ### Stack
 
 Python · Flask · Azure Container Apps · OpenShift · Okta · ADFS · Duo ·
-SAML 2.0 · OIDC · Splunk · Ollama · on-prem LLMs
+SAML 2.0 · OIDC · Splunk · Ollama · on-prem LLMs · Claude Code · Codex
 
 ---
 
