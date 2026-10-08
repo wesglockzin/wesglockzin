@@ -4,8 +4,8 @@ Federal identity engineer. On-prem AI. Python.
 
 I run identity infrastructure at federation scale — ADFS, Okta, Duo,
 Entra ID — and I build the tools that keep large migrations survivable.
-Right now that means moving roughly 400 applications from ADFS to Okta
-and replacing an enterprise MFA platform mid-flight, without breaking
+The ADFS-to-Okta cutover for roughly 400 applications landed in October;
+now it's replacing an enterprise MFA platform mid-flight, without breaking
 anyone's Monday morning.
 
 ---
@@ -42,6 +42,22 @@ federation flow misbehaves.
 **[saml-metadata-parser](https://github.com/wesglockzin/saml-metadata-parser)**
 Reads SAML metadata so I don't have to — endpoints, bindings, and every
 X.509 certificate decoded with fingerprints and validity dates.
+
+**[okta-admin](https://github.com/wesglockzin/okta-admin)**
+Bulk Okta app administration across orgs — inventory, policy and routing-rule
+assignment, activate/deactivate, and clearing the Everyone group with a live
+view of Okta's background cleanup. It skips what Okta would reject, so a batch
+never fails halfway.
+
+**[okta-change-auditor](https://github.com/wesglockzin/okta-change-auditor)**
+Who changed what, and when. A read-only view of Okta admin changes across orgs,
+straight from the System Log, with routine noise filtered out. The fastest
+answer to "who touched this app?"
+
+**[okta-live-tail](https://github.com/wesglockzin/okta-live-tail)**
+The Okta System Log in real time, per event, failures included — what I watch
+while a sign-in is being debugged. Authenticates with OAuth client credentials
+and `private_key_jwt`, so there's no shared secret to leak.
 
 **[claude-code-session-memory](https://github.com/wesglockzin/claude-code-session-memory)**
 Local RAG session memory for Claude Code — a `UserPromptSubmit` hook that
